@@ -1,37 +1,33 @@
-// Replace the following values with your own
-const username = "superjjy";
-const repository = "home";
-const token = "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";
+const form = document.querySelector('form');
 
-// Handle form submission
-$("form").submit(function(event) {
-	event.preventDefault();
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
 
-	// Get form values
-	const input = $("#input").val();
+  const formData = new FormData(form);
+  const entries = Array.from(formData.entries());
+  const input = $('#input').val();
+  const data = {
+	input: input
+  };
 
-	// Create data object
-	const data = {
-		input: input,
-	};
+  entries.forEach(([key, value]) => {
+    data[key] = value;
+  });
 
-	// Send data to GitHub repository using API
-	$.ajax({
-		url: `https://api.github.com/repos/${username}/${repository}/issues`,
-		type: "POST",
-		headers: {
-			Authorization: `token ${token}`
-		},
-		data: JSON.stringify(data),
-		success: function(response) {
-			// Display success message
-			alert("Thank you for submitting the questionnaire!");
-			// Reset form
-			$("form")[0].reset();
-		},
-		error: function(xhr, status, error) {
-			// Display error message
-			alert(`An error occurred: ${error}`);
-		}
-	});
+  fetch('https://api.github.com/repos/SUPERJJY/home/contents/data.json', {
+    method: 'PUT',
+    headers: {
+      'Authorization': 'Bearer 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',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      message: 'Add form data',
+      content: btoa(JSON.stringify(data)),
+      branch: 'main',
+      path: 'data.json'
+    })
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
 });
