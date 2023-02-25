@@ -6,6 +6,7 @@ form.addEventListener('submit', (event) => {
   const formData = new FormData(form);
   const entries = Array.from(formData.entries());
   const input = $('#input').val();
+  const token = $('#token').val();
   const data = {
 	input: input
   };
@@ -17,7 +18,7 @@ form.addEventListener('submit', (event) => {
   fetch('https://api.github.com/repos/SUPERJJY/home/contents/data.json', {
     method: 'PUT',
     headers: {
-      'Authorization': 'Bearer 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',
+      'Authorization': 'Bearer ${token}',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
