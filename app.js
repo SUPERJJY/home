@@ -20,7 +20,7 @@ $("form").submit(function(event) {
 		url: `https://api.github.com/repos/${username}/${repository}/issues`,
 		type: "POST",
 		headers: {
-			Authorization: `token ${token}`
+			Authorization: `${token}`
 		},
 		data: JSON.stringify(data),
 		success: function(response) {
