@@ -1,5 +1,5 @@
 // Replace the following values with your own
-const username = "SUPERJJY";
+const username = "superjjy";
 const repository = "home";
 
 // Handle form submission
@@ -8,7 +8,7 @@ $("form").submit(function(event) {
 
 	// Get form values
 	const input = $("#input-field").val();
-    const token = $("#token-field").val();
+    	const token = $("#token-field").val();
 
 	// Create data object
 	const data = {
