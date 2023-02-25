@@ -1,18 +1,18 @@
 // Replace the following values with your own
 const username = "superjjy";
 const repository = "home";
+const token = "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";
 
 // Handle form submission
 $("form").submit(function(event) {
 	event.preventDefault();
 
 	// Get form values
-	const input = $("#input-field").val();
-    	const token = $("#token-field").val();
+	const input = $("#input").val();
 
 	// Create data object
 	const data = {
-		name: input,
+		input: input,
 	};
 
 	// Send data to GitHub repository using API
@@ -20,7 +20,7 @@ $("form").submit(function(event) {
 		url: `https://api.github.com/repos/${username}/${repository}/issues`,
 		type: "POST",
 		headers: {
-			Authorization: `${token}`
+			Authorization: `token ${token}`
 		},
 		data: JSON.stringify(data),
 		success: function(response) {
