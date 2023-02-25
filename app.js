@@ -17,7 +17,7 @@ form.addEventListener('submit', (event) => {
   fetch('https://api.github.com/repos/SUPERJJY/home/contents/data.json', {
     method: 'PUT',
     headers: {
-      'Authorization': 'Bearer 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',
+      'Authorization': 'Bearer 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',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
